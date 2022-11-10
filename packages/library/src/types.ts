@@ -1,5 +1,8 @@
 import { BigNumber } from '@ethersproject/bignumber';
+import { JsonRpcProvider } from '@ethersproject/providers';
+import { DefenderRelayProvider, DefenderRelaySigner } from 'defender-relay-client/lib/ethers';
 
+// Config types
 export interface ContractData {
   address: string;
   chainId: number;
@@ -22,9 +25,15 @@ export interface Config {
 
 export interface ProviderOptions {
   chainId: number;
+  provider: DefenderRelayProvider | DefenderRelaySigner | JsonRpcProvider;
+}
+
+export interface ProviderUrlOptions {
+  chainId: number;
   providerUrl: string;
 }
 
+// Contracts types
 export interface Draw {
   drawId: number;
   beaconPeriodSeconds: number;
@@ -67,14 +76,4 @@ export interface PrizeTier {
   endTimestampOffset: number;
   prize: BigNumber;
   tiers: Array<number>;
-}
-
-export interface BeaconChainConfig {
-  beaconChain: ProviderOptions;
-}
-
-export interface PrizePoolNetworkConfig {
-  beaconChain: ProviderOptions;
-  receiverChain?: ProviderOptions;
-  allPrizePoolNetworkChains?: ProviderOptions[];
 }

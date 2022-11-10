@@ -1,6 +1,6 @@
 import { Contract, PopulatedTransaction } from '@ethersproject/contracts';
 import { JsonRpcProvider } from '@ethersproject/providers';
-import { ContractsBlob, PrizePoolNetworkConfig } from './types';
+import { ContractsBlob, ProviderOptions, ProviderUrlOptions } from './types';
 import {
   calculateDrawTimestamps,
   calculateReceiverDrawToPushToTimelock,
@@ -13,25 +13,17 @@ const debug = require('debug')('pt-autotask-lib');
 
 export async function receiverDrawLockAndNetworkTotalSupplyPush(
   contracts: ContractsBlob,
-  config: PrizePoolNetworkConfig,
+  beaconChain: ProviderOptions,
+  receiverChain: ProviderUrlOptions,
+  prizePoolNetworkChains: ProviderUrlOptions[],
 ): Promise<PopulatedTransaction | undefined> {
-  let providerBeaconChain;
+  const { chainId, provider } = beaconChain;
   let providerReceiverChain;
 
-  if (config?.beaconChain?.providerUrl) {
-    providerBeaconChain = new JsonRpcProvider(config?.beaconChain?.providerUrl);
-  } else {
-    throw new Error('Beacon Unavailable: check providerUrl configuration');
-  }
-
-  if (config?.receiverChain?.providerUrl && config?.receiverChain?.chainId) {
-    providerReceiverChain = new JsonRpcProvider(config?.receiverChain?.providerUrl);
+  if (receiverChain.providerUrl && receiverChain.chainId) {
+    providerReceiverChain = new JsonRpcProvider(receiverChain.providerUrl);
   } else {
     throw new Error('Receiver Unavailable: check providerUrl configuration');
-  }
-
-  if (!providerBeaconChain || !providerReceiverChain) {
-    throw new Error('Providers Unavailable: check providerUrl configuration');
   }
 
   /* ==========================================================================================*/
@@ -39,47 +31,37 @@ export async function receiverDrawLockAndNetworkTotalSupplyPush(
   /* ========================================================================================== */
 
   //  Beacon Chain Contracts
-  const drawBufferBeaconChain = getContract(
-    'DrawBuffer',
-    config.beaconChain.chainId,
-    providerBeaconChain,
-    contracts,
-  );
-  const prizeTierHistoryBeaconChain = getContract(
-    'PrizeTierHistory',
-    config.beaconChain.chainId,
-    providerBeaconChain,
-    contracts,
-  );
+  const drawBufferBeaconChain = getContract('DrawBuffer', chainId, provider, contracts);
+  const prizeTierHistoryBeaconChain = getContract('PrizeTierHistory', chainId, provider, contracts);
   const prizeDistributionBufferBeaconChain = getContract(
     'PrizeDistributionBuffer',
-    config.beaconChain.chainId,
-    providerBeaconChain,
+    chainId,
+    provider,
     contracts,
   );
 
   //  Receiver Chain Contracts
   const ticketReceiverChain = getContract(
     'Ticket',
-    config.receiverChain.chainId,
+    receiverChain.chainId,
     providerReceiverChain,
     contracts,
   );
   const prizeDistributionBufferReceiverChain = getContract(
     'PrizeDistributionBuffer',
-    config.receiverChain.chainId,
+    receiverChain.chainId,
     providerReceiverChain,
     contracts,
   );
   const drawCalculatorTimelockReceiverChain = getContract(
     'DrawCalculatorTimelock',
-    config.receiverChain.chainId,
+    receiverChain.chainId,
     providerReceiverChain,
     contracts,
   );
   const receiverTimelockTrigger = getContract(
     'ReceiverTimelockTrigger',
-    config.receiverChain.chainId,
+    receiverChain.chainId,
     providerReceiverChain,
     contracts,
   );
@@ -96,15 +78,16 @@ export async function receiverDrawLockAndNetworkTotalSupplyPush(
     throw new Error('Contract Unavailable: Check ContractList and Provider Configuration');
   }
 
-  let otherTicketContracts: Array<Contract | undefined> | undefined =
-    config.allPrizePoolNetworkChains?.map((otherTicket) => {
+  let otherTicketContracts: Array<Contract | undefined> | undefined = prizePoolNetworkChains.map(
+    (otherTicket) => {
       return getContract(
         'Ticket',
         otherTicket.chainId,
         new JsonRpcProvider(otherTicket.providerUrl),
         contracts,
       );
-    });
+    },
+  );
 
   /* ============================================================ */
   // Fetching data from Beacon/Receiver/SecondaryReceiver Chains

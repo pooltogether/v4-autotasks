@@ -1,6 +1,6 @@
 import { Contract, PopulatedTransaction } from '@ethersproject/contracts';
 import { JsonRpcProvider } from '@ethersproject/providers';
-import { ContractsBlob, PrizePoolNetworkConfig } from './types';
+import { ContractsBlob, ProviderOptions, ProviderUrlOptions } from './types';
 import {
   calculateDrawTimestamps,
   calculateBeaconDrawToPushToTimelock,
@@ -13,51 +13,29 @@ const debug = require('debug')('pt-autotask-lib');
 
 export async function beaconDrawLockAndNetworkTotalSupplyPush(
   contracts: ContractsBlob,
-  config: PrizePoolNetworkConfig,
+  beaconChain: ProviderOptions,
+  prizePoolNetworkChains: ProviderUrlOptions[],
 ): Promise<PopulatedTransaction | undefined> {
-  let providerBeaconChain;
-
-  if (config?.beaconChain?.providerUrl) {
-    providerBeaconChain = new JsonRpcProvider(config?.beaconChain?.providerUrl);
-  }
-
-  if (!providerBeaconChain) {
-    throw new Error('Provider Unavailable: check providerUrl configuration');
-  }
+  const { chainId, provider } = beaconChain;
 
   /* ==========================================================================================*/
   // Initializing Contracts using the Beacon/Receiver/SecondaryReceiver chain configurations
   /* ========================================================================================== */
-  const drawBufferBeaconChain = getContract(
-    'DrawBuffer',
-    config.beaconChain.chainId,
-    providerBeaconChain,
-    contracts,
-  );
-  const prizeTierHistoryBeaconChain = getContract(
-    'PrizeTierHistory',
-    config.beaconChain.chainId,
-    providerBeaconChain,
-    contracts,
-  );
+  const drawBufferBeaconChain = getContract('DrawBuffer', chainId, provider, contracts);
+  const prizeTierHistoryBeaconChain = getContract('PrizeTierHistory', chainId, provider, contracts);
   const prizeDistributionBufferBeaconChain = getContract(
     'PrizeDistributionBuffer',
-    config.beaconChain.chainId,
-    providerBeaconChain,
+    chainId,
+    provider,
     contracts,
   );
   const beaconTimelockAndPushRouter = getContract(
     'BeaconTimelockTrigger',
-    config.beaconChain.chainId,
-    providerBeaconChain,
+    chainId,
+    provider,
     contracts,
   );
-  const ticketBeaconChain = getContract(
-    'Ticket',
-    config.beaconChain.chainId,
-    providerBeaconChain,
-    contracts,
-  );
+  const ticketBeaconChain = getContract('Ticket', chainId, provider, contracts);
 
   if (
     !drawBufferBeaconChain ||
@@ -69,15 +47,16 @@ export async function beaconDrawLockAndNetworkTotalSupplyPush(
     throw new Error('Contract Unavailable: Check ContractList and Provider Configuration');
   }
 
-  let otherTicketContracts: Array<Contract | undefined> | undefined =
-    config.allPrizePoolNetworkChains?.map((otherTicket) => {
+  let otherTicketContracts: Array<Contract | undefined> | undefined = prizePoolNetworkChains.map(
+    (otherTicket) => {
       return getContract(
         'Ticket',
         otherTicket.chainId,
         new JsonRpcProvider(otherTicket.providerUrl),
         contracts,
       );
-    });
+    },
+  );
 
   const { lockAndPush, drawIdToFetch } = await calculateBeaconDrawToPushToTimelock(
     drawBufferBeaconChain,
