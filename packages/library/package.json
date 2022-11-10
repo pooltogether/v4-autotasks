@@ -18,8 +18,8 @@
     "url": "git+https://github.com/pooltogether/v4-autotasks.git"
   },
   "scripts": {
-    "format": "prettier --config ../../.prettierrc --ignore-path ../../.prettierignore --write \"**/*.{ts,js}\"",
-    "tsc": "tsc"
+    "build": "tsc",
+    "format": "prettier --config ../../.prettierrc --ignore-path ../../.prettierignore --write \"**/*.{ts,js}\""
   },
   "bugs": {
     "url": "https://github.com/pooltogether/v4-autotasks/issues"
