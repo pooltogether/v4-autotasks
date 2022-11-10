@@ -20,6 +20,14 @@ Install and link dependencies across packages with:
 lerna bootstrap
 ```
 
+### Symlink all packages
+
+To symlink together all packages while developing, run the following command:
+
+```
+lerna link
+```
+
 ### Add a package
 
 To add a package, you need to run:
@@ -70,6 +78,19 @@ Once TypeScript and Jest have been setup, you need to add the following scripts 
   "tsc": "tsc",
   "test": "jest ./__tests__/index.ts"
 },
+```
+
+### Compile a package
+
+In the package directory, run the following command:
+
+```
+npm run tsc
+```
+
+If you wish to compile all packages, you can run the following command in the root directory of this project:
+```
+lerna run tsc
 ```
 
 ### Publish a package
