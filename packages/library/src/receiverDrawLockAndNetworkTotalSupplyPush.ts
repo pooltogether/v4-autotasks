@@ -18,9 +18,9 @@ export async function receiverDrawLockAndNetworkTotalSupplyPush(
   prizePoolNetworkChains: ProviderUrlOptions[],
 ): Promise<PopulatedTransaction | undefined> {
   const { chainId, provider } = beaconChain;
-  let providerReceiverChain;
+  let providerReceiverChain: JsonRpcProvider;
 
-  if (receiverChain.providerUrl && receiverChain.chainId) {
+  if (receiverChain.providerUrl) {
     providerReceiverChain = new JsonRpcProvider(receiverChain.providerUrl);
   } else {
     throw new Error('Receiver Unavailable: check providerUrl configuration');
@@ -47,18 +47,21 @@ export async function receiverDrawLockAndNetworkTotalSupplyPush(
     providerReceiverChain,
     contracts,
   );
+
   const prizeDistributionBufferReceiverChain = getContract(
     'PrizeDistributionBuffer',
     receiverChain.chainId,
     providerReceiverChain,
     contracts,
   );
+
   const drawCalculatorTimelockReceiverChain = getContract(
     'DrawCalculatorTimelock',
     receiverChain.chainId,
     providerReceiverChain,
     contracts,
   );
+
   const receiverTimelockTrigger = getContract(
     'ReceiverTimelockTrigger',
     receiverChain.chainId,

@@ -3,6 +3,5 @@ export { drawBeaconHandleDrawStartAndComplete } from './drawBeaconHandleDrawStar
 export { receiverDrawLockAndNetworkTotalSupplyPush } from './receiverDrawLockAndNetworkTotalSupplyPush';
 export { prizeFlush } from './prizeFlush';
 
-export { isMainnet, isTestnet } from './utils/isNetwork';
-
+export * from './utils/network';
 export * from './types';
