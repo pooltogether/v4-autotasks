@@ -1,9 +1,10 @@
 {
- "extends": "../../tsconfig.json",
- "compilerOptions": {
-   "outDir": "./lib"
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "outDir": "./lib"
  },
  "include": [
-   "./src"
+    "./src"
  ]
 }
