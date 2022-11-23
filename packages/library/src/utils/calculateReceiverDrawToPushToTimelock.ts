@@ -12,12 +12,13 @@ export async function calculateReceiverDrawToPushToTimelock(
   let drawNewestFromBeaconChain;
   let oldestDrawIdFromBeaconChain = 0;
   let newestDrawIdFromBeaconChain = 0;
+
   try {
     drawNewestFromBeaconChain = await drawBufferBeaconChain.getNewestDraw();
     newestDrawIdFromBeaconChain = drawNewestFromBeaconChain.drawId;
     debug(drawNewestFromBeaconChain);
   } catch (error) {
-    throw new Error('BeaconChain: DrawBuffer is not initialized');
+    throw new Error(`BeaconChain: DrawBuffer is not initialized:\n${error}`);
   }
   let lockAndPush: Boolean = false;
   let newestDrawIdFromReceiverChain = 0;
@@ -57,6 +58,7 @@ export async function calculateReceiverDrawToPushToTimelock(
    * State 1: Beacon chain is 1 draw ahead of the Receiver chain.
    * State 2: Beacon chain is 2 draws ahead of an uninitialized Receiver chain.
    * State 3: Beacon chain is 2 draws ahead of an initialized Receiver chain.
+   * State 4: Beacon chain and Receiver chain draws are identic.
    */
 
   if (oldestDrawIdFromBeaconChain === 0 && newestDrawIdFromBeaconChain === 0) {
@@ -102,12 +104,17 @@ export async function calculateReceiverDrawToPushToTimelock(
     drawIdToFetch = newestDrawIdFromReceiverChain + 1;
     drawFromBeaconChainToPush = await drawBufferBeaconChain.getDraw(drawIdToFetch);
     lockAndPush = true;
+  } else if (newestDrawIdFromBeaconChain === newestDrawIdFromReceiverChain) {
+    console.log('No Draw ID to lock and push.');
+    console.log(`Beacon chain draw ID: ${newestDrawIdFromBeaconChain}`);
+    console.log(`Receiver chain draw ID: ${newestDrawIdFromReceiverChain}`);
   }
 
   // WHY would we get undefined? What situation are missing?
   if (typeof drawFromBeaconChainToPush === 'undefined') {
     throw new Error('DrawBufferBeaconChain/error-calculating-correct-draw');
   }
+
   debug('DrawID: ', drawIdToFetch);
   debug('Draw: ', drawFromBeaconChainToPush);
 
