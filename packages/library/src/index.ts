@@ -1,4 +1,4 @@
-export { beaconDrawLockAndNetworkTotalSupplyPush } from './beaconDrawLockAndNetworkTotalSupplyPush';
+export { lockDrawAndPushNetworkTotalSupply } from './lockDrawAndPushNetworkTotalSupply';
 export { drawBeaconHandleDrawStartAndComplete } from './drawBeaconHandleDrawStartAndComplete';
 export { receiverDrawLockAndNetworkTotalSupplyPush } from './receiverDrawLockAndNetworkTotalSupplyPush';
 export { prizeFlush } from './prizeFlush';
