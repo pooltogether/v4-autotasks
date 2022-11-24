@@ -2,7 +2,6 @@ import { Relayer } from 'defender-relay-client';
 import { DefenderRelayProvider, DefenderRelaySigner } from 'defender-relay-client/lib/ethers';
 import {
   getContracts,
-  getProviderUrl,
   getProviderUrlOptions,
   isMainnet,
   isTestnet,

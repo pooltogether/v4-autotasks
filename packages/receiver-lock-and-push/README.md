@@ -1,6 +1,6 @@
 # @pooltogether/v4-autotasks-receiver-lock-and-push
 
-OpenZeppelin Defender autotask to lock and push prize pool network TVL on L2s.
+OpenZeppelin Defender autotask to lock draw and push prize pool network TVL on L2s.
 
 ## Development
 
