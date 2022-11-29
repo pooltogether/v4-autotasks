@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.0](https://github.com/pooltogether/v4-autotasks/compare/v4-autotasks-library-v1.1.0...v4-autotasks-library-v1.2.0) (2022-11-29)
+
+
+### Features
+
+* **library:** add network provider utils ([0903761](https://github.com/pooltogether/v4-autotasks/commit/0903761b8c06d90f0c97abc0255f95722df38fab))
+
+
+### Bug Fixes
+
+* **library:** fix receiver provider ([fc0467b](https://github.com/pooltogether/v4-autotasks/commit/fc0467be33d6cf4b78c080048e8144d35c1bf2d0))
+* **library:** handle receiver identic draws ([c7c2fb5](https://github.com/pooltogether/v4-autotasks/commit/c7c2fb50990546486471ea1b7d29cff26b796ca5))
+* **library:** log no draw instead of throw error ([fbc2b40](https://github.com/pooltogether/v4-autotasks/commit/fbc2b409ec68c39bfda10fbe9261071121097777))
+
 ## [1.1.0](https://github.com/pooltogether/v4-autotasks/compare/v4-autotasks-library-v1.0.0...v4-autotasks-library-v1.1.0) (2022-11-10)
 
 
