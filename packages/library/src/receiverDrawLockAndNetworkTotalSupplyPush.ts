@@ -13,17 +13,18 @@ const debug = require('debug')('pt-autotask-lib');
 
 export async function receiverDrawLockAndNetworkTotalSupplyPush(
   contracts: ContractsBlob,
-  beaconChain: ProviderOptions,
-  receiverChain: ProviderUrlOptions,
+  beaconChain: ProviderUrlOptions,
+  receiverChain: ProviderOptions,
   prizePoolNetworkChains: ProviderUrlOptions[],
 ): Promise<PopulatedTransaction | undefined> {
-  const { chainId, provider } = beaconChain;
-  let providerReceiverChain;
+  const { chainId, provider } = receiverChain;
 
-  if (receiverChain.providerUrl && receiverChain.chainId) {
-    providerReceiverChain = new JsonRpcProvider(receiverChain.providerUrl);
+  let providerBeaconChain: JsonRpcProvider;
+
+  if (beaconChain.providerUrl) {
+    providerBeaconChain = new JsonRpcProvider(beaconChain.providerUrl);
   } else {
-    throw new Error('Receiver Unavailable: check providerUrl configuration');
+    throw new Error('Beacon Unavailable: check providerUrl configuration');
   }
 
   /* ==========================================================================================*/
@@ -31,38 +32,46 @@ export async function receiverDrawLockAndNetworkTotalSupplyPush(
   /* ========================================================================================== */
 
   //  Beacon Chain Contracts
-  const drawBufferBeaconChain = getContract('DrawBuffer', chainId, provider, contracts);
-  const prizeTierHistoryBeaconChain = getContract('PrizeTierHistory', chainId, provider, contracts);
+  const drawBufferBeaconChain = getContract(
+    'DrawBuffer',
+    beaconChain.chainId,
+    providerBeaconChain,
+    contracts,
+  );
+  const prizeTierHistoryBeaconChain = getContract(
+    'PrizeTierHistory',
+    beaconChain.chainId,
+    providerBeaconChain,
+    contracts,
+  );
   const prizeDistributionBufferBeaconChain = getContract(
+    'PrizeDistributionBuffer',
+    beaconChain.chainId,
+    providerBeaconChain,
+    contracts,
+  );
+
+  //  Receiver Chain Contracts
+  const ticketReceiverChain = getContract('Ticket', chainId, provider, contracts);
+
+  const prizeDistributionBufferReceiverChain = getContract(
     'PrizeDistributionBuffer',
     chainId,
     provider,
     contracts,
   );
 
-  //  Receiver Chain Contracts
-  const ticketReceiverChain = getContract(
-    'Ticket',
-    receiverChain.chainId,
-    providerReceiverChain,
-    contracts,
-  );
-  const prizeDistributionBufferReceiverChain = getContract(
-    'PrizeDistributionBuffer',
-    receiverChain.chainId,
-    providerReceiverChain,
-    contracts,
-  );
   const drawCalculatorTimelockReceiverChain = getContract(
     'DrawCalculatorTimelock',
-    receiverChain.chainId,
-    providerReceiverChain,
+    chainId,
+    provider,
     contracts,
   );
+
   const receiverTimelockTrigger = getContract(
     'ReceiverTimelockTrigger',
-    receiverChain.chainId,
-    providerReceiverChain,
+    chainId,
+    provider,
     contracts,
   );
 
@@ -127,6 +136,6 @@ export async function receiverDrawLockAndNetworkTotalSupplyPush(
       totalNetworkTicketSupply,
     );
   } else {
-    throw new Error('No Draw to LockAndPush');
+    console.log('No Draw to LockAndPush');
   }
 }

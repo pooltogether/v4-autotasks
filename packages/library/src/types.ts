@@ -33,6 +33,25 @@ export interface ProviderUrlOptions {
   providerUrl: string;
 }
 
+// OpenZeppelin Defender types
+export type Secrets = {
+  infuraApiKey?: string;
+
+  // Mainnet
+  ethereumMainnetProviderURL?: string;
+  arbitrumMainnetProviderURL?: string;
+  avalancheMainnetProviderURL?: string;
+  optimismMainnetProviderURL?: string;
+  polygonMainnetProviderURL?: string;
+
+  // Testnet
+  ethereumGoerliProviderURL?: string;
+  arbitrumGoerliProviderURL?: string;
+  avalancheFujiProviderURL?: string;
+  optimismGoerliProviderURL?: string;
+  polygonMumbaiProviderURL?: string;
+};
+
 // Contracts types
 export interface Draw {
   drawId: number;

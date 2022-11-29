@@ -1,6 +1,6 @@
-# @pooltogether/v4-autotasks-draw-beacon
+# @pooltogether/v4-autotasks-draw-lock-and-push
 
-OpenZeppelin Defender autotask to start and complete a draw.
+OpenZeppelin Defender autotask to lock draw and push prize pool network TVL.
 
 ## Development
 
@@ -29,29 +29,45 @@ export RELAYER_API_KEY=
 export RELAYER_API_SECRET=
 ```
 
+The following env variables are needed if you wish to run the autotask locally:
+```
+# Mainnet
+export ETHEREUM_MAINNET_PROVIDER_URL=
+export AVALANCHE_MAINNET_PROVIDER_URL=
+export OPTIMISM_MAINNET_PROVIDER_URL=
+export POLYGON_MAINNET_PROVIDER_URL=
+
+# Testnet
+export ETHEREUM_GOERLI_PROVIDER_URL=
+export ARBITRUM_GOERLI_PROVIDER_URL=
+export AVALANCHE_FUJI_PROVIDER_URL=
+export OPTIMISM_GOERLI_PROVIDER_URL=
+export POLYGON_MUMBAI_PROVIDER_URL=
+```
+
 Here are the currently deployed autotasks and their corresponding ID.
 
 #### Mainnet
 ##### Ethereum
 
 ```
-export AUTOTASK_ID=aa31b5e6-b1fb-4975-9b2b-0f82ef39848e
+export AUTOTASK_ID=c2f332a6-c1fd-42fd-8503-1e5cfdeca860
 export CHAIN_ID=1
 ```
 
 #### Testnet
-##### Goerli
+##### Ethereum Goerli
 
 ```
-export AUTOTASK_ID=8363cd07-39b2-426a-a132-e3a1b842065f
+export AUTOTASK_ID=7f3c5e7d-5712-47f6-bafd-70a292749d90
 export CHAIN_ID=5
 ```
 
-##### Mumbai
+##### Polygon Mumbai
 
 ```
-export AUTOTASK_ID=52587953-d1d2-4102-8357-3451d45021f8
-export CHAIN_ID=5
+export AUTOTASK_ID=d4ac0479-0f6d-4d72-979b-a3252db0679d
+export CHAIN_ID=80001
 ```
 
 ### Run autotask
@@ -69,3 +85,4 @@ To update the autotask, run:
 ```
 npm run update
 ```
+

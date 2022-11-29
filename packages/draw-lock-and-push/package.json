@@ -1,9 +1,9 @@
 {
-  "name": "@pooltogether/v4-autotasks-draw-beacon",
+  "name": "@pooltogether/v4-autotasks-draw-lock-and-push",
   "version": "1.0.0",
-  "description": "Autotask to start and complete a draw.",
+  "description": "Autotask to lock draw and push prize pool network TVL.",
   "author": "PoolTogether Inc.",
-  "homepage": "https://github.com/pooltogether/v4-autotasks/packages/draw-beacon/README.md",
+  "homepage": "https://github.com/pooltogether/v4-autotasks/packages/draw-lock-and-push/README.md",
   "license": "ISC",
   "main": "lib/handler.js",
   "directories": {

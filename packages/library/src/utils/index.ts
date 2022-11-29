@@ -1,6 +1,6 @@
 export { calculatePicks } from './calculatePicks';
 export { calculatePicksFromAverageTotalSuppliesBetween } from './calculatePicksFromAverageTotalSuppliesBetween';
-export { calculateBeaconDrawToPushToTimelock } from '../utils/calculateBeaconDrawToPushToTimelock';
+export { calculateDrawToPushToTimelock } from './calculateDrawToPushToTimelock';
 export { calculateDrawTimestamps } from './calculateDrawTimestamps';
 export { calculateReceiverDrawToPushToTimelock } from './calculateReceiverDrawToPushToTimelock';
 export { computeCardinality } from './computeCardinality';

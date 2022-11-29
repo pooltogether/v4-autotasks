@@ -3,8 +3,8 @@
   "compilerOptions": {
     "module": "esnext",
     "outDir": "./lib"
- },
- "include": [
+  },
+  "include": [
     "./src"
- ]
+  ]
 }
