@@ -47,6 +47,13 @@ export AUTOTASK_ID=8363cd07-39b2-426a-a132-e3a1b842065f
 export CHAIN_ID=5
 ```
 
+##### Mumbai
+
+```
+export AUTOTASK_ID=52587953-d1d2-4102-8357-3451d45021f8
+export CHAIN_ID=5
+```
+
 ### Run autotask
 
 To run the autotask locally, run:
