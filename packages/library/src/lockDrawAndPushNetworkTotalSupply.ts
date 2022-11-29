@@ -86,6 +86,6 @@ export async function lockDrawAndPushNetworkTotalSupply(
       totalNetworkTicketSupply,
     );
   } else {
-    throw new Error('No Draw to LockAndPush');
+    console.log('No Draw to LockAndPush');
   }
 }
