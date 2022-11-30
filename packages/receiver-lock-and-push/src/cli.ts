@@ -6,6 +6,12 @@ if (esMain(import.meta)) {
   const {
     RELAYER_API_KEY: apiKey,
     RELAYER_API_SECRET: apiSecret,
+    // Mainnet
+    ETHEREUM_MAINNET_PROVIDER_URL: ethereumMainnetProviderURL,
+    POLYGON_MAINNET_PROVIDER_URL: polygonMainnetProviderURL,
+    AVALANCHE_MAINNET_PROVIDER_URL: avalancheMainnetProviderURL,
+    OPTIMISM_MAINNET_PROVIDER_URL: optimismMainnetProviderURL,
+    // Testnet
     ARBITRUM_GOERLI_PROVIDER_URL: arbitrumGoerliProviderURL,
     ETHEREUM_GOERLI_PROVIDER_URL: ethereumGoerliProviderURL,
     POLYGON_MUMBAI_PROVIDER_URL: polygonMumbaiProviderURL,
@@ -16,6 +22,12 @@ if (esMain(import.meta)) {
     apiKey,
     apiSecret,
     secrets: {
+      // Mainnet
+      ethereumMainnetProviderURL,
+      polygonMainnetProviderURL,
+      avalancheMainnetProviderURL,
+      optimismMainnetProviderURL,
+      // Testnet
       ethereumGoerliProviderURL,
       polygonMumbaiProviderURL,
       optimismGoerliProviderURL,

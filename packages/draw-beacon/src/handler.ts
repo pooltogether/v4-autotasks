@@ -40,9 +40,9 @@ export async function handler(event: RelayerParams) {
       });
       console.log('TransactionHash:', transactionSentToNetwork.hash);
     } else {
-      throw new Error('DrawBeacon: Transaction not populated');
+      console.log('DrawBeacon: Transaction not populated');
     }
   } catch (error) {
-    console.log(error);
+    throw new Error(error);
   }
 }

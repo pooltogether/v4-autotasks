@@ -66,7 +66,7 @@ export async function handler(event: any) {
 
       console.log(`TransactionHash: ${transactionSentToNetwork.hash}`);
     } else {
-      throw new Error('ReceiverTimelockTrigger: Transaction not populated');
+      console.log('ReceiverTimelockTrigger: Transaction not populated');
     }
   } catch (error) {
     throw new Error(error);

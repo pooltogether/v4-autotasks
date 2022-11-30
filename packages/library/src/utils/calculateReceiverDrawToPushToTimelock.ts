@@ -13,6 +13,12 @@ export async function calculateReceiverDrawToPushToTimelock(
   let oldestDrawIdFromBeaconChain = 0;
   let newestDrawIdFromBeaconChain = 0;
 
+  let drawIdToFetch = 0;
+  let drawFromBeaconChainToPush: Draw | undefined;
+
+  let lockAndPush = false;
+  let newestDrawIdFromReceiverChain = 0;
+
   try {
     drawNewestFromBeaconChain = await drawBufferBeaconChain.getNewestDraw();
     newestDrawIdFromBeaconChain = drawNewestFromBeaconChain.drawId;
@@ -20,8 +26,6 @@ export async function calculateReceiverDrawToPushToTimelock(
   } catch (error) {
     throw new Error(`BeaconChain: DrawBuffer is not initialized:\n${error}`);
   }
-  let lockAndPush: Boolean = false;
-  let newestDrawIdFromReceiverChain = 0;
   try {
     const { drawId: drawIdNewestFromReceiverChain } =
       await prizeDistributionBufferReceiverChain.getNewestPrizeDistribution();
@@ -45,7 +49,13 @@ export async function calculateReceiverDrawToPushToTimelock(
 
   if (!timelockElapsed) {
     // IF the timelock has not elapsed, we can NOT push a new Draw/PrizeDistribution so we return early.
-    throw new Error('DrawCalculatorTimelockReceiverChain/timelock-not-elapsed');
+    console.log('DrawCalculatorTimelockReceiverChain/timelock-not-elapsed');
+
+    return {
+      drawFromBeaconChainToPush,
+      drawIdToFetch,
+      lockAndPush,
+    };
   }
 
   debug('oldestBeaconChainDrawId: ', oldestDrawIdFromBeaconChain);
@@ -64,9 +74,6 @@ export async function calculateReceiverDrawToPushToTimelock(
   if (oldestDrawIdFromBeaconChain === 0 && newestDrawIdFromBeaconChain === 0) {
     throw new Error('BeaconChainPrizeDistributionBuffer/no-prize-distribution-buffer-available');
   }
-
-  let drawIdToFetch = 0;
-  let drawFromBeaconChainToPush: Draw | undefined;
 
   if (newestDrawIdFromBeaconChain === newestDrawIdFromReceiverChain + 1) {
     /**

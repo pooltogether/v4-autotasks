@@ -38,10 +38,11 @@ export async function calculateDrawToPushToTimelock(
     lockAndPush = true;
     drawIdToFetch = newestPrizeDistributionDrawId + 1;
 
-    console.log(`DrawBuffer Newest Draw: ${newestDraw}`);
     console.log(
       `PrizeDistributionBuffer newest PrizeDistribution DrawID: ${newestPrizeDistributionDrawId}`,
     );
+
+    console.log(`DrawBuffer Newest Draw: ${newestDraw}`);
   }
 
   return {

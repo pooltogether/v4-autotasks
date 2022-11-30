@@ -39,6 +39,13 @@ export AUTOTASK_ID=aa31b5e6-b1fb-4975-9b2b-0f82ef39848e
 export CHAIN_ID=1
 ```
 
+##### Polygon
+
+```
+export AUTOTASK_ID=fc1e3196-6429-4956-b74a-2f3b6e31487b
+export CHAIN_ID=137
+```
+
 #### Testnet
 ##### Goerli
 
@@ -51,7 +58,7 @@ export CHAIN_ID=5
 
 ```
 export AUTOTASK_ID=52587953-d1d2-4102-8357-3451d45021f8
-export CHAIN_ID=5
+export CHAIN_ID=80001
 ```
 
 ### Run autotask
