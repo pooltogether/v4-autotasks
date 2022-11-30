@@ -17,8 +17,10 @@ export async function drawBeaconHandleDrawStartAndComplete(
   }
 
   const nextDrawId = await drawBeacon.getNextDrawId();
+  const beaconPeriodEndAt = await drawBeacon.beaconPeriodEndAt();
   const beaconPeriodStartedAt = await drawBeacon.getBeaconPeriodStartedAt();
   const isRngRequested = await drawBeacon.isRngRequested();
+  const isRngCompleted = await drawBeacon.isRngCompleted();
   const isBeaconPeriodOver = await drawBeacon.isRngRequested();
   const beaconPeriodSeconds = await drawBeacon.getBeaconPeriodSeconds();
   const canStartDraw = await drawBeacon.canStartDraw();
@@ -35,14 +37,22 @@ export async function drawBeaconHandleDrawStartAndComplete(
 
   let transactionPopulated: PopulatedTransaction | undefined;
 
-  if (await drawBeacon.canStartDraw()) {
+  if (canStartDraw) {
     console.log('DrawBeacon: Starting Draw');
     transactionPopulated = await drawBeacon.populateTransaction.startDraw();
+  } else if (!canCompleteDraw) {
+    console.log(
+      `DrawBeacon: Draw ${nextDrawId} not ready to start.\nBeaconPeriodEndAt: ${beaconPeriodEndAt}`,
+    );
   }
 
-  if (await drawBeacon.canCompleteDraw()) {
+  if (canCompleteDraw) {
     console.log('DrawBeacon: Completing Draw');
     transactionPopulated = await drawBeacon.populateTransaction.completeDraw();
+  } else if (!canStartDraw) {
+    console.log(
+      `DrawBeacon: Draw ${nextDrawId} not ready to complete.\nIsRngRequested: ${isRngRequested}\nIsRngCompleted: ${isRngCompleted}`,
+    );
   }
 
   return transactionPopulated;
