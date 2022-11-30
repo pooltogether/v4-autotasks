@@ -55,6 +55,13 @@ export AUTOTASK_ID=c2f332a6-c1fd-42fd-8503-1e5cfdeca860
 export CHAIN_ID=1
 ```
 
+##### Polygon
+
+```
+export AUTOTASK_ID=8b0e9303-1d48-4801-8727-7e61c853a711
+export CHAIN_ID=137
+```
+
 #### Testnet
 ##### Ethereum Goerli
 
