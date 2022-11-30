@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/pooltogether/v4-autotasks/compare/v4-autotasks-library-v1.2.0...v4-autotasks-library-v1.2.1) (2022-11-30)
+
+
+### Bug Fixes
+
+* **library:** improve error logging ([ffddbec](https://github.com/pooltogether/v4-autotasks/commit/ffddbec9fa598156662e5456f5072ec1c500bbb9))
+
 ## [1.2.0](https://github.com/pooltogether/v4-autotasks/compare/v4-autotasks-library-v1.1.0...v4-autotasks-library-v1.2.0) (2022-11-29)
 
 

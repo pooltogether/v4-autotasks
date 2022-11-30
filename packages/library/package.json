@@ -1,6 +1,6 @@
 {
   "name": "@pooltogether/v4-autotasks-library",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Library of shared utils to run V4 autotasks.",
   "author": "PoolTogether Inc.",
   "homepage": "https://github.com/pooltogether/v4-autotasks/packages/library/README.md",
