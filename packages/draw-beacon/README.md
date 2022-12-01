@@ -39,6 +39,13 @@ export AUTOTASK_ID=aa31b5e6-b1fb-4975-9b2b-0f82ef39848e
 export CHAIN_ID=1
 ```
 
+##### Avalanche
+
+```
+export AUTOTASK_ID=2930275d-bc67-488a-9066-3326e3089c5e
+export CHAIN_ID=43114
+```
+
 ##### Polygon
 
 ```
