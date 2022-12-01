@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2](https://github.com/pooltogether/v4-autotasks/compare/v4-autotasks-library-v1.2.1...v4-autotasks-library-v1.2.2) (2022-12-01)
+
+
+### Bug Fixes
+
+* **library:** return early if timelock not elapsed ([5d039a7](https://github.com/pooltogether/v4-autotasks/commit/5d039a7f30955a8d70747bf3a79e0d848fc3e34b))
+
 ## [1.2.1](https://github.com/pooltogether/v4-autotasks/compare/v4-autotasks-library-v1.2.0...v4-autotasks-library-v1.2.1) (2022-11-30)
 
 
