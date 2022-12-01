@@ -62,20 +62,7 @@ export AUTOTASK_ID=bd7296c4-2f1d-4e8c-b678-6274320fb802
 export RECEIVER_CHAIN_ID=10
 ```
 
-##### Polygon
-
-```
-export AUTOTASK_ID=d4d2473e-cdab-495d-9e9e-eb4645911868
-export RECEIVER_CHAIN_ID=137
-```
-
 #### Testnet
-##### Avalanche Fuji
-
-```
-export AUTOTASK_ID=222891ef-ef3f-454c-8011-648a8a908347
-export RECEIVER_CHAIN_ID=43113
-```
 
 ##### Arbitrum Goerli
 
@@ -89,13 +76,6 @@ export RECEIVER_CHAIN_ID=421613
 ```
 export AUTOTASK_ID=5323ff16-83e3-47cf-82e5-5a7b0e6a1b38
 export RECEIVER_CHAIN_ID=420
-```
-
-##### Polygon Mumbai
-
-```
-export AUTOTASK_ID=28c8e065-0cac-4387-a49d-bf0247a8d495
-export RECEIVER_CHAIN_ID=80001
 ```
 
 ### Run autotask

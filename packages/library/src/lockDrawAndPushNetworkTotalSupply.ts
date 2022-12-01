@@ -18,8 +18,15 @@ export async function lockDrawAndPushNetworkTotalSupply(
 ): Promise<PopulatedTransaction | undefined> {
   const { chainId, provider } = chain;
 
+  const beaconTimelockTrigger = getContract('BeaconTimelockTrigger', chainId, provider, contracts);
   const drawBuffer = getContract('DrawBuffer', chainId, provider, contracts);
-  const prizeTierHistory = getContract('PrizeTierHistory', chainId, provider, contracts);
+  const drawCalculatorTimelock = getContract(
+    'DrawCalculatorTimelock',
+    chainId,
+    provider,
+    contracts,
+  );
+
   const prizeDistributionBuffer = getContract(
     'PrizeDistributionBuffer',
     chainId,
@@ -27,15 +34,16 @@ export async function lockDrawAndPushNetworkTotalSupply(
     contracts,
   );
 
-  const beaconTimelockTrigger = getContract('BeaconTimelockTrigger', chainId, provider, contracts);
+  const prizeTierHistory = getContract('PrizeTierHistory', chainId, provider, contracts);
 
   const ticket = getContract('Ticket', chainId, provider, contracts);
 
   if (
-    !drawBuffer ||
-    !prizeTierHistory ||
-    !prizeDistributionBuffer ||
     !beaconTimelockTrigger ||
+    !drawBuffer ||
+    !drawCalculatorTimelock ||
+    !prizeDistributionBuffer ||
+    !prizeTierHistory ||
     !ticket
   ) {
     throw new Error('Contract Unavailable: Check ContractList and Provider Configuration');
@@ -54,6 +62,7 @@ export async function lockDrawAndPushNetworkTotalSupply(
 
   const { lockAndPush, drawIdToFetch } = await calculateDrawToPushToTimelock(
     drawBuffer,
+    drawCalculatorTimelock,
     prizeDistributionBuffer,
   );
 

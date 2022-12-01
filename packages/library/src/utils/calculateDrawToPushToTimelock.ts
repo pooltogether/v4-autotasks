@@ -3,12 +3,28 @@ import { Draw } from '../types';
 
 export async function calculateDrawToPushToTimelock(
   drawBuffer: Contract,
+  drawCalculatorTimelock: Contract,
   prizeDistributionBuffer: Contract,
 ) {
   let newestDraw: Draw;
   let drawIdToFetch = 0;
   let newestPrizeDistributionDrawId = 0;
   let lockAndPush = false;
+
+  const hasTimelockElapsed = await drawCalculatorTimelock.hasElapsed();
+
+  /**
+   * Check if timelock has elapsed.
+   * If not, we return early since the transaction would fail.
+   */
+  if (!hasTimelockElapsed) {
+    console.log('DrawCalculatorTimelock: timelock has not elapsed.');
+
+    return {
+      lockAndPush,
+      drawIdToFetch,
+    };
+  }
 
   /**
    * Fetch newest Draw

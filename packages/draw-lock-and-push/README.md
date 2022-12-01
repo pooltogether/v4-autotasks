@@ -63,14 +63,21 @@ export CHAIN_ID=137
 ```
 
 #### Testnet
-##### Ethereum Goerli
+##### Goerli
 
 ```
 export AUTOTASK_ID=7f3c5e7d-5712-47f6-bafd-70a292749d90
 export CHAIN_ID=5
 ```
 
-##### Polygon Mumbai
+##### Fuji
+
+```
+export AUTOTASK_ID=7a13c144-b126-4f63-bea5-d7b98ede3a6a
+export CHAIN_ID=43113
+```
+
+##### Mumbai
 
 ```
 export AUTOTASK_ID=d4ac0479-0f6d-4d72-979b-a3252db0679d
