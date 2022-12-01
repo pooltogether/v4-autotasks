@@ -54,6 +54,13 @@ export AUTOTASK_ID=8363cd07-39b2-426a-a132-e3a1b842065f
 export CHAIN_ID=5
 ```
 
+##### Fuji
+
+```
+export AUTOTASK_ID=d777bb3a-ef92-4d6c-9af3-ab3e5b01ef04
+export CHAIN_ID=43113
+```
+
 ##### Mumbai
 
 ```
