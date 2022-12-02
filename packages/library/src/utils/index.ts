@@ -1,7 +1,9 @@
 export { calculatePicks } from './calculatePicks';
 export { calculatePicksFromAverageTotalSuppliesBetween } from './calculatePicksFromAverageTotalSuppliesBetween';
 export { calculateDrawToPushToTimelock } from './calculateDrawToPushToTimelock';
+export { fetchDrawIdToPush } from './fetchDrawIdToPush';
 export { calculateDrawTimestamps } from './calculateDrawTimestamps';
+export { fetchReceiverDrawIdToPush } from './fetchReceiverDrawIdToPush';
 export { calculateReceiverDrawToPushToTimelock } from './calculateReceiverDrawToPushToTimelock';
 export { computeCardinality } from './computeCardinality';
 export { computePrizeDistribution } from './computePrizeDistribution';
