@@ -48,12 +48,6 @@ export POLYGON_MUMBAI_PROVIDER_URL=
 Here are the currently deployed autotasks and their corresponding ID.
 
 #### Mainnet
-##### Avalanche
-
-```
-export AUTOTASK_ID=7fd3321b-bd15-4c3d-96a3-ab515d7e9933
-export RECEIVER_CHAIN_ID=43114
-```
 
 ##### Optimism
 
