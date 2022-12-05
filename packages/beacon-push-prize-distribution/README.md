@@ -1,4 +1,4 @@
-# @pooltogether/v4-autotasks-draw-lock-and-push
+# @pooltogether/v4-autotasks-beacon-push-prize-distribution
 
 OpenZeppelin Defender autotask to lock draw and push prize pool network TVL.
 

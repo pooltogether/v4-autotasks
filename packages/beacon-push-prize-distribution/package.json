@@ -1,9 +1,9 @@
 {
-  "name": "@pooltogether/v4-autotasks-beacon-push-draw-id",
+  "name": "@pooltogether/v4-autotasks-beacon-push-prize-distribution",
   "version": "1.0.0",
   "description": "Autotask to push a new draw id to the Prize Distribution Factory on a beacon chain deployment.",
   "author": "PoolTogether Inc.",
-  "homepage": "https://github.com/pooltogether/v4-autotasks/packages/beacon-push-draw-id/README.md",
+  "homepage": "https://github.com/pooltogether/v4-autotasks/packages/beacon-push-prize-distribution/README.md",
   "license": "ISC",
   "main": "lib/handler.js",
   "directories": {

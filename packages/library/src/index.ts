@@ -1,5 +1,4 @@
-export { beaconPushDrawId } from './beaconPushDrawId';
-export { receiverPushDrawId } from './receiverPushDrawId';
+export { beaconPushPrizeDistribution } from './beaconPushPrizeDistribution';
 export { lockDrawAndPushNetworkTotalSupply } from './lockDrawAndPushNetworkTotalSupply';
 export { drawBeaconHandleDrawStartAndComplete } from './drawBeaconHandleDrawStartAndComplete';
 export { receiverDrawLockAndNetworkTotalSupplyPush } from './receiverDrawLockAndNetworkTotalSupplyPush';

@@ -1,24 +1,7 @@
 import { Relayer } from 'defender-relay-client';
 import { DefenderRelayProvider, DefenderRelaySigner } from 'defender-relay-client/lib/ethers';
-import {
-  receiverPushDrawId,
-  getContracts,
-  getProviderUrlOptions,
-  isMainnet,
-  isTestnet,
-  Secrets,
-} from '@pooltogether/v4-autotasks-library';
+import { getContracts, beaconPushPrizeDistribution } from '@pooltogether/v4-autotasks-library';
 import { mainnet, testnet } from '@pooltogether/v4-pool-data';
-
-const getBeaconChainConfig = (chainId: number, secrets: Secrets) => {
-  if (isMainnet(chainId)) {
-    return getProviderUrlOptions(1, secrets);
-  } else if (isTestnet(chainId)) {
-    return getProviderUrlOptions(5, secrets);
-  } else {
-    throw new Error(`getConfig: Unsupported network ${chainId}`);
-  }
-};
 
 export async function handler(event: any) {
   const provider = new DefenderRelayProvider(event);
@@ -27,10 +10,9 @@ export async function handler(event: any) {
 
   const chainId = Number(process.env.CHAIN_ID);
   const contracts = getContracts(chainId, mainnet, testnet);
-  const beaconChain = getBeaconChainConfig(chainId, event.secrets);
 
   try {
-    const transactionPopulated = await receiverPushDrawId(contracts, beaconChain, {
+    const transactionPopulated = await beaconPushPrizeDistribution(contracts, {
       chainId,
       provider: signer,
     });
