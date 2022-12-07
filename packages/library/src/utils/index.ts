@@ -3,7 +3,6 @@ export { calculatePicksFromAverageTotalSuppliesBetween } from './calculatePicksF
 export { calculateDrawToPushToTimelock } from './calculateDrawToPushToTimelock';
 export { fetchDrawIdToPush } from './fetchDrawIdToPush';
 export { calculateDrawTimestamps } from './calculateDrawTimestamps';
-export { fetchReceiverDrawIdToPush } from './fetchReceiverDrawIdToPush';
 export { calculateReceiverDrawToPushToTimelock } from './calculateReceiverDrawToPushToTimelock';
 export { computeCardinality } from './computeCardinality';
 export { computePrizeDistribution } from './computePrizeDistribution';
