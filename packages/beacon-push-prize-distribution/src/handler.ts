@@ -27,7 +27,7 @@ export async function handler(event: any) {
 
       console.log(`TransactionHash: ${transactionSentToNetwork.hash}`);
     } else {
-      console.log('Error sending transaction');
+      console.log('PrizeDistributionFactoryV2: Transaction not populated');
     }
   } catch (error) {
     throw new Error(error);
