@@ -1,4 +1,4 @@
-# @pooltogether/v4-autotasks-draw-lock-and-push
+# @pooltogether/v4-autotasks-beacon-lock-and-push
 
 OpenZeppelin Defender autotask to lock draw and push prize pool network TVL.
 
@@ -9,11 +9,13 @@ OpenZeppelin Defender autotask to lock draw and push prize pool network TVL.
 We use [direnv](https://direnv.net) to manage environment variables. You'll likely need to install it.
 
 Copy `.envrc.example` and write down the env variables needed to run this project.
+
 ```
 cp .envrc.example .envrc
 ```
 
 Once your env variables are setup, load them with:
+
 ```
 direnv allow
 ```
@@ -30,6 +32,7 @@ export RELAYER_API_SECRET=
 ```
 
 The following env variables are needed if you wish to run the autotask locally:
+
 ```
 # Mainnet
 export ETHEREUM_MAINNET_PROVIDER_URL=
@@ -48,6 +51,7 @@ export POLYGON_MUMBAI_PROVIDER_URL=
 Here are the currently deployed autotasks and their corresponding ID.
 
 #### Mainnet
+
 ##### Ethereum
 
 ```
@@ -70,7 +74,8 @@ export CHAIN_ID=137
 ```
 
 #### Testnet
-##### Goerli
+
+##### Ethereum Goerli
 
 ```
 export AUTOTASK_ID=7f3c5e7d-5712-47f6-bafd-70a292749d90
@@ -106,4 +111,3 @@ To update the autotask, run:
 ```
 npm run update
 ```
-
