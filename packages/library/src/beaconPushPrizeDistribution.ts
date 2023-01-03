@@ -39,7 +39,7 @@ export async function beaconPushPrizeDistribution(
 
   if (shouldPush) {
     debug('Pushing Draw Id: ', drawIdToPush);
-    return await prizeDistributionFactoryV2.pushPrizeDistribution(drawIdToPush);
+    return await prizeDistributionFactoryV2.populateTransaction.pushPrizeDistribution(drawIdToPush);
   } else {
     console.log('No Draw Id to push');
   }
