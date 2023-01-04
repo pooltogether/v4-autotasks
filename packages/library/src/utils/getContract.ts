@@ -12,7 +12,7 @@ export function getContract(
     major: 1,
     minor: 0,
     patch: 0,
-  }
+  },
 ): Contract | undefined {
   debug('name:', name);
   debug('chainId:', chainId);
@@ -23,7 +23,9 @@ export function getContract(
     (cont) => cont.type === name && cont.chainId === chainId,
   );
 
-  const contract = contracts.find(contract => JSON.stringify(contract.version) === JSON.stringify(version));
+  const contract = contracts.find(
+    (contract) => JSON.stringify(contract.version) === JSON.stringify(version),
+  );
 
   if (contract) {
     return new ethers.Contract(contract.address, contract.abi, providerOrSigner);

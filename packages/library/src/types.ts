@@ -12,7 +12,7 @@ export interface ContractData {
     major: number;
     minor: number;
     patch: number;
-  }
+  };
 }
 
 export interface ContractsBlob {

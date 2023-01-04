@@ -19,11 +19,17 @@ export async function beaconPushPrizeDistribution(
 
   const drawBuffer = getContract('DrawBuffer', chainId, provider, contracts);
   const prizeDistributionFactoryV2 = getContract(
-    'PrizeDistributionFactoryV2',
+    'PrizeDistributionFactory',
     chainId,
     provider,
     contracts,
+    {
+      major: 2,
+      minor: 0,
+      patch: 0,
+    },
   );
+
   const prizeDistributionBuffer = getContract(
     'PrizeDistributionBuffer',
     chainId,
