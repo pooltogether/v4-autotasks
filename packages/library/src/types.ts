@@ -8,6 +8,11 @@ export interface ContractData {
   chainId: number;
   type: string;
   abi: any;
+  version: {
+    major: number;
+    minor: number;
+    patch: number;
+  }
 }
 
 export interface ContractsBlob {

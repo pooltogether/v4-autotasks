@@ -8,16 +8,27 @@ export function getContract(
   chainId: number,
   providerOrSigner: any,
   contractsBlob: ContractsBlob,
+  version = {
+    major: 1,
+    minor: 0,
+    patch: 0,
+  }
 ): Contract | undefined {
   debug('name:', name);
   debug('chainId:', chainId);
+
   if (!name || !chainId) throw new Error(`Invalid Contract Parameters`);
-  const contract = contractsBlob.contracts.filter(
+
+  const contracts = contractsBlob.contracts.filter(
     (cont) => cont.type === name && cont.chainId === chainId,
   );
-  if (contract[0]) {
-    return new ethers.Contract(contract[0].address, contract[0].abi, providerOrSigner);
+
+  const contract = contracts.find(contract => JSON.stringify(contract.version) === JSON.stringify(version));
+
+  if (contract) {
+    return new ethers.Contract(contract.address, contract.abi, providerOrSigner);
   }
+
   throw new Error(`Contract Unavailable: ${name} on chainId: ${chainId} `);
 }
 
