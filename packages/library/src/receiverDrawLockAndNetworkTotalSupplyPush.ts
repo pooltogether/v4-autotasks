@@ -38,12 +38,19 @@ export async function receiverDrawLockAndNetworkTotalSupplyPush(
     providerBeaconChain,
     contracts,
   );
-  const prizeTierHistoryBeaconChain = getContract(
+
+  const prizeTierHistoryV2BeaconChain = getContract(
     'PrizeTierHistory',
     beaconChain.chainId,
     providerBeaconChain,
     contracts,
+    {
+      major: 2,
+      minor: 0,
+      patch: 0,
+    },
   );
+
   const prizeDistributionBufferBeaconChain = getContract(
     'PrizeDistributionBuffer',
     beaconChain.chainId,
@@ -77,7 +84,7 @@ export async function receiverDrawLockAndNetworkTotalSupplyPush(
 
   if (
     !drawBufferBeaconChain ||
-    !prizeTierHistoryBeaconChain ||
+    !prizeTierHistoryV2BeaconChain ||
     !prizeDistributionBufferBeaconChain ||
     !prizeDistributionBufferReceiverChain ||
     !drawCalculatorTimelockReceiverChain ||
@@ -114,7 +121,7 @@ export async function receiverDrawLockAndNetworkTotalSupplyPush(
    * IF a Draw and PrizeDistribution need to be locked/pushed we fetch the required data from multiple networks.
    */
   if (lockAndPush) {
-    const prizeTier = await prizeTierHistoryBeaconChain.getPrizeTier(drawIdToFetch);
+    const prizeTier = await prizeTierHistoryV2BeaconChain.getPrizeTier(drawIdToFetch);
 
     const [startTime, endTime] = calculateDrawTimestamps(prizeTier, drawFromBeaconChainToPush);
 

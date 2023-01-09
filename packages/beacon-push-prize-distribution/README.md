@@ -33,6 +33,13 @@ Here are the currently deployed autotasks and their corresponding ID.
 
 #### Mainnet
 
+##### Ethereum
+
+```
+export AUTOTASK_ID=7d226540-b3d1-4dd5-93d7-9e01c989a1ab
+export CHAIN_ID=1
+```
+
 ##### Avalanche
 
 ```
