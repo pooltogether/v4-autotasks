@@ -47,6 +47,13 @@ export AUTOTASK_ID=da814bdc-0779-4905-a80a-35b5ce9f40b2
 export CHAIN_ID=43114
 ```
 
+##### Polygon
+
+```
+export AUTOTASK_ID=b984446b-fed6-4385-b0ff-7d96d8891063
+export CHAIN_ID=137
+```
+
 #### Testnet
 ##### Goerli
 
