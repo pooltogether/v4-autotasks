@@ -47,6 +47,13 @@ export AUTOTASK_ID=da814bdc-0779-4905-a80a-35b5ce9f40b2
 export CHAIN_ID=43114
 ```
 
+##### Optimism
+
+```
+export AUTOTASK_ID=284eb751-32e5-4f3d-aa30-12a888d52dc8
+export CHAIN_ID=10
+```
+
 ##### Polygon
 
 ```
@@ -67,6 +74,13 @@ export CHAIN_ID=5
 ```
 export AUTOTASK_ID=8b901546-e61e-4d41-bf86-0f9c2195c945
 export CHAIN_ID=43113
+```
+
+##### Optimism Goerli
+
+```
+export AUTOTASK_ID=77bff4ba-269d-4f42-9356-6654fc8f5c37
+export CHAIN_ID=420
 ```
 
 ##### Mumbai
