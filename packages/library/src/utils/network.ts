@@ -1,32 +1,46 @@
 import { ContractsBlob, ProviderUrlOptions, Secrets } from '../types';
 
+// Mainnet chain ids
+export const ARBITRUM_CHAIN_ID = 42161;
+export const AVALANCHE_CHAIN_ID = 43114;
+export const ETHEREUM_MAINNET_CHAIN_ID = 1;
+export const OPTIMISM_CHAIN_ID = 10;
+export const POLYGON_CHAIN_ID = 137;
+
+// Testnet chain ids
+export const ARBITRUM_GOERLI_CHAIN_ID = 421613;
+export const FUJI_CHAIN_ID = 43113;
+export const ETHEREUM_GOERLI_CHAIN_ID = 5;
+export const OPTIMISM_GOERLI_CHAIN_ID = 420;
+export const MUMBAI_CHAIN_ID = 80001;
+
 // The Arbitrum prize pool has not been deployed on mainnet yet
-export const MAINNET_CHAIN_IDS = [
-  1, // Ethereum
-  43114, // Avalanche
-  10, // Optimism
-  137, // Polygon
+export const ETHEREUM_MAINNET_CHAIN_IDS = [
+  ETHEREUM_MAINNET_CHAIN_ID,
+  AVALANCHE_CHAIN_ID,
+  OPTIMISM_CHAIN_ID,
+  POLYGON_CHAIN_ID,
 ];
 
 // The Avalanche Fuji prize pool has been deprecated on testnet
 export const TESTNET_CHAIN_IDS = [
-  5, // Ethereum Goerli
-  421613, // Arbitrum Goerli
-  420, // Optimism Goerli
-  80001, // Polygon Mumbai
+  ETHEREUM_GOERLI_CHAIN_ID,
+  ARBITRUM_GOERLI_CHAIN_ID,
+  OPTIMISM_GOERLI_CHAIN_ID,
+  MUMBAI_CHAIN_ID,
 ];
 
 export const isMainnet = (chainId: number): boolean => {
   switch (chainId) {
-    case 1:
+    case ETHEREUM_MAINNET_CHAIN_ID:
       return true;
-    case 42161:
+    case ARBITRUM_CHAIN_ID:
       return true;
-    case 43114:
+    case AVALANCHE_CHAIN_ID:
       return true;
-    case 10:
+    case OPTIMISM_CHAIN_ID:
       return true;
-    case 137:
+    case POLYGON_CHAIN_ID:
       return true;
     default:
       return false;
@@ -35,15 +49,15 @@ export const isMainnet = (chainId: number): boolean => {
 
 export const isTestnet = (chainId: number): boolean => {
   switch (chainId) {
-    case 5:
+    case ETHEREUM_GOERLI_CHAIN_ID:
       return true;
-    case 421613:
+    case ARBITRUM_GOERLI_CHAIN_ID:
       return true;
-    case 43113:
+    case FUJI_CHAIN_ID:
       return true;
-    case 420:
+    case OPTIMISM_GOERLI_CHAIN_ID:
       return true;
-    case 80001:
+    case MUMBAI_CHAIN_ID:
       return true;
     default:
       return false;
@@ -79,26 +93,26 @@ export const getProviderUrl = (chainId: number, secrets: Secrets) => {
   } = secrets;
 
   switch (chainId) {
-    case 1:
+    case ETHEREUM_MAINNET_CHAIN_ID:
       return ethereumMainnetProviderURL;
-    case 42161:
+    case ARBITRUM_CHAIN_ID:
       return arbitrumMainnetProviderURL;
-    case 43114:
+    case AVALANCHE_CHAIN_ID:
       return avalancheMainnetProviderURL;
-    case 10:
+    case OPTIMISM_CHAIN_ID:
       return optimismMainnetProviderURL;
-    case 137:
+    case POLYGON_CHAIN_ID:
       return polygonMainnetProviderURL;
 
-    case 5:
+    case ETHEREUM_GOERLI_CHAIN_ID:
       return ethereumGoerliProviderURL;
-    case 421613:
+    case ARBITRUM_GOERLI_CHAIN_ID:
       return arbitrumGoerliProviderURL;
-    case 43113:
+    case FUJI_CHAIN_ID:
       return avalancheFujiProviderURL;
-    case 420:
+    case OPTIMISM_GOERLI_CHAIN_ID:
       return optimismGoerliProviderURL;
-    case 80001:
+    case MUMBAI_CHAIN_ID:
       return polygonMumbaiProviderURL;
 
     default:
