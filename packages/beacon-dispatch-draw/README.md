@@ -32,6 +32,15 @@ export RELAYER_API_SECRET=
 
 Here are the currently deployed autotasks and their corresponding ID.
 
+#### Mainnet
+##### Ethereum to Optimism
+
+```
+export AUTOTASK_ID=c692f10a-4b9a-42ef-be72-0b465d82ef61
+export CHAIN_ID=1
+export RECEIVER_CHAIN_ID=10
+```
+
 #### Testnet
 ##### Ethereum Goerli to Optimism Goerli
 

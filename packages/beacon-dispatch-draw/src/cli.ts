@@ -6,6 +6,7 @@ if (esMain(import.meta)) {
   const {
     RELAYER_API_KEY: apiKey,
     RELAYER_API_SECRET: apiSecret,
+    OPTIMISM_MAINNET_PROVIDER_URL: optimismMainnetProviderURL,
     OPTIMISM_GOERLI_PROVIDER_URL: optimismGoerliProviderURL,
   } = process.env;
 
@@ -13,6 +14,7 @@ if (esMain(import.meta)) {
     apiKey,
     apiSecret,
     secrets: {
+      optimismMainnetProviderURL,
       optimismGoerliProviderURL,
     },
   })
