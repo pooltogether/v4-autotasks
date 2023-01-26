@@ -7,7 +7,7 @@ export { calculateReceiverDrawToPushToTimelock } from './calculateReceiverDrawTo
 export { computeCardinality } from './computeCardinality';
 export { computePrizeDistribution } from './computePrizeDistribution';
 export { computePrizeDistributionFromTicketAverageTotalSupplies } from './computePrizeDistributionFromTicketAverageTotalSupplies';
-export { getContract, getSingleMessageDispatcherContractAddress } from './getContract';
+export { getContract, getMessageDispatcherContractAddress } from './getContract';
 export { getMultiTicketAverageTotalSuppliesBetween } from './getMultiTicketAverageTotalSuppliesBetween';
 export { shouldDispatchNewestDraw } from './shouldDispatchNewestDraw';
 export { sumBigNumbers } from './sumBigNumbers';

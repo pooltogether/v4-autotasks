@@ -2,6 +2,8 @@ import { ethers } from 'ethers';
 import { Contract } from 'ethers';
 
 import {
+  ETHEREUM_MAINNET_CHAIN_ID,
+  OPTIMISM_CHAIN_ID,
   ARBITRUM_GOERLI_CHAIN_ID,
   ETHEREUM_GOERLI_CHAIN_ID,
   OPTIMISM_GOERLI_CHAIN_ID,
@@ -42,11 +44,20 @@ export function getContract(
   throw new Error(`Contract Unavailable: ${name} on chainId: ${chainId} `);
 }
 
-export function getSingleMessageDispatcherContractAddress(
+export function getMessageDispatcherContractAddress(
   beaconChainId: number,
   receiverChainId: number,
 ): string | Error {
   switch (beaconChainId) {
+    case ETHEREUM_MAINNET_CHAIN_ID:
+      switch (receiverChainId) {
+        case OPTIMISM_CHAIN_ID:
+          return '0xa8f85bAB964D7e6bE938B54Bf4b29A247A88CD9d';
+        default:
+          throw new Error(
+            `MessageDispatcher Contract unavailable for receiver chainId: ${receiverChainId}`,
+          );
+      }
     case ETHEREUM_GOERLI_CHAIN_ID:
       switch (receiverChainId) {
         case ARBITRUM_GOERLI_CHAIN_ID:
@@ -57,12 +68,10 @@ export function getSingleMessageDispatcherContractAddress(
           return '0xBA8d8a0554dFd7F7CCf3cEB47a88d711e6a65F5b';
         default:
           throw new Error(
-            `SingleMessageDispatcher Contract unavailable for receiver chainId: ${receiverChainId}`,
+            `MessageDispatcher Contract unavailable for receiver chainId: ${receiverChainId}`,
           );
       }
     default:
-      throw new Error(
-        `SingleMessageDispatcher Contract unavailable on beacon chainId: ${beaconChainId}`,
-      );
+      throw new Error(`MessageDispatcher Contract unavailable on beacon chainId: ${beaconChainId}`);
   }
 }

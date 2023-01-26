@@ -5,7 +5,7 @@ import { ContractsBlob, ProviderOptions, ProviderUrlOptions } from './types';
 import {
   shouldDispatchNewestDraw,
   getContract,
-  getSingleMessageDispatcherContractAddress,
+  getMessageDispatcherContractAddress,
 } from './utils';
 
 /**
@@ -48,14 +48,14 @@ export async function beaconDispatchNewestDraw(
     throw new Error('Contract Unavailable: Check ContractList and Provider Configuration');
   }
 
-  const singleMessageDispatcherAddress = getSingleMessageDispatcherContractAddress(
+  const messageDispatcherAddress = getMessageDispatcherContractAddress(
     chainId,
     receiverChain.chainId,
   );
 
   if (await shouldDispatchNewestDraw(drawBuffer, receiverDrawBuffer)) {
     return await drawDispatcher.populateTransaction.dispatchNewestDraw(
-      singleMessageDispatcherAddress,
+      messageDispatcherAddress,
       receiverChain.chainId,
       drawExecutor.address,
     );
