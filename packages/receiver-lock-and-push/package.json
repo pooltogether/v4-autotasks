@@ -29,7 +29,7 @@
     "url": "https://github.com/pooltogether/v4-autotasks/issues"
   },
   "dependencies": {
-    "@pooltogether/v4-autotasks-library": "1.3.0-beta.4",
+    "@pooltogether/v4-autotasks-library": "2.0.0",
     "@pooltogether/v4-pool-data": "1.11.0-beta.7",
     "defender-relay-client": "1.37.0"
   },
